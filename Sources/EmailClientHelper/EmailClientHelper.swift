@@ -9,6 +9,7 @@
 import UIKit
 #endif
 
+/// Helper class to send an email using 3rd party apps
 public class EmailClientHelper {
 
     /// An array of available email clients on the device
@@ -77,7 +78,7 @@ public class EmailClientHelper {
     ///   - body: The email body
     public static func sendEmail(client: EmailClient, to: String, subject: String = "", body: String = "") {
         #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
-        var url: URL? = getEmailURL(client: client, to: to, subject: subject, body: body)
+        let url: URL? = getEmailURL(client: client, to: to, subject: subject, body: body)
         
         if let url {
             UIApplication.shared.open(url)
