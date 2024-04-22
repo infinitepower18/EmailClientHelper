@@ -26,7 +26,6 @@ public class EmailClientHelper {
         return clients
     }
     
-    
     /// Checks whether a specific client is available on the device
     /// - Parameter client: The email client to check
     /// - Returns: Whether the client is available
@@ -44,18 +43,18 @@ public class EmailClientHelper {
         #endif
     }
     
-    /// Send an email using the specified email client
+    /// Get the email URL
     /// - Parameters:
-    ///   - client: The email client to use
+    ///   - client: The email client
     ///   - to: The email address to send to
     ///   - subject: The email subject
     ///   - body: The email body
-    public static func sendEmail(client: EmailClient, to: String, subject: String = "", body: String = "") {
+    public static func getEmailURL(client: EmailClient, to: String, subject: String = "", body: String = "") -> URL? {
+        var url: URL?
+        
         #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
-        var url: URL?
         
         switch client {
             case .gmail:
@@ -65,6 +64,20 @@ public class EmailClientHelper {
             case .yahooMail:
                 url = URL(string: "ymail://mail/compose?to=\(to)&subject=\(encodedSubject)&body=\(encodedBody)")
         }
+        #endif
+        
+        return url
+    }
+    
+    /// Send an email using the specified email client
+    /// - Parameters:
+    ///   - client: The email client to use
+    ///   - to: The email address to send to
+    ///   - subject: The email subject
+    ///   - body: The email body
+    public static func sendEmail(client: EmailClient, to: String, subject: String = "", body: String = "") {
+        #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        var url: URL? = getEmailURL(client: client, to: to, subject: subject, body: body)
         
         if let url {
             UIApplication.shared.open(url)
