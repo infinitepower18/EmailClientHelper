@@ -50,22 +50,20 @@ public class EmailClientHelper {
     ///   - to: The email address to send to
     ///   - subject: The email subject
     ///   - body: The email body
-    public static func sendEmail(client: EmailClient, to: String, subject: String, body: String) {
+    public static func sendEmail(client: EmailClient, to: String, subject: String = "", body: String = "") {
         #if os(iOS) || os(visionOS)
         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         var url: URL?
         
-        for client in EmailClient.allCases {
-            switch client {
+        switch client {
             case .gmail:
                 url = URL(string: "googlegmail://co?to=\(to)&subject=\(encodedSubject)&body=\(encodedBody)")
             case .outlook:
                 url = URL(string: "ms-outlook://compose?to=\(to)&subject=\(encodedSubject)&body=\(encodedBody)")
             case .yahooMail:
                 url = URL(string: "ymail://mail/compose?to=\(to)&subject=\(encodedSubject)&body=\(encodedBody)")
-            }
         }
         
         if let url {
