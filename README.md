@@ -1,4 +1,7 @@
-# EmailClientHelper-Swift
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Finfinitepower18%2FEmailClientHelper%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/infinitepower18/EmailClientHelper)
+![GitHub](https://img.shields.io/github/license/infinitepower18/emailclienthelper)
+
+# EmailClientHelper
 A simple helper package to send an email using 3rd party email clients. Supported clients include Gmail, Outlook and Yahoo Mail.
 
 Currently, the package only supports iOS, Mac Catalyst and visionOS.
