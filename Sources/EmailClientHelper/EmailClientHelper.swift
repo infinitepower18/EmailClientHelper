@@ -56,8 +56,12 @@ public class EmailClientHelper {
         var url: URL?
         
         #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
-        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        guard let encodedSubject = encodedSubject, let encodedBody = encodedBody else {
+            return url
+        }
         
         switch client {
             case .gmail:
