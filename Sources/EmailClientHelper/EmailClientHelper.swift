@@ -18,7 +18,7 @@ public class EmailClientHelper {
     public static var availableClients: [EmailClient] {
         var clients: [EmailClient] = []
         
-        #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        #if os(iOS) || os(visionOS)
         for client in EmailClient.allCases {
             if isClientAvailable(client) {
                 clients.append(client)
@@ -33,7 +33,7 @@ public class EmailClientHelper {
     /// - Parameter client: The email client to check
     /// - Returns: Whether the client is available
     public static func isClientAvailable(_ client: EmailClient) -> Bool {
-        #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        #if os(iOS) || os(visionOS)
         let urlProtocol = URL(string: "\(client.rawValue)://")
         
         if let urlProtocol = urlProtocol, UIApplication.shared.canOpenURL(urlProtocol) {
@@ -55,7 +55,7 @@ public class EmailClientHelper {
     public static func getEmailURL(client: EmailClient, to: String, subject: String = "", body: String = "") -> URL? {
         var url: URL?
         
-        #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        #if os(iOS) || os(visionOS)
         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
@@ -83,7 +83,7 @@ public class EmailClientHelper {
     ///   - subject: The email subject
     ///   - body: The email body
     public static func sendEmail(client: EmailClient, to: String, subject: String = "", body: String = "") {
-        #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        #if os(iOS) || os(visionOS)
         let url: URL? = getEmailURL(client: client, to: to, subject: subject, body: body)
         
         if let url {

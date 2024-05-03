@@ -6,7 +6,7 @@ Helper package to send an email using 3rd party apps
 
 A simple helper package to send an email using 3rd party email clients. Supported clients include Gmail, Outlook and Yahoo Mail.
 
-Currently, the package only supports iOS, Mac Catalyst and visionOS.
+Currently, the package only supports iOS and visionOS.
 
 You will also need to add this in your app's `Info.plist`:
 
