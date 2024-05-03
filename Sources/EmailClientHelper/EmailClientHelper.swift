@@ -16,6 +16,8 @@ import Cocoa
 /// Helper class to send an email using 3rd party apps
 public class EmailClientHelper {
 
+    // MARK: Public methods
+
     /// An array of available email clients on the device
     public static var availableClients: [EmailClient] {
         var clients: [EmailClient] = []
@@ -105,20 +107,17 @@ public class EmailClientHelper {
         #endif
     }
 
-    /// Get the bundle ID of the specified client
-    /// - Parameters:
-    ///   - client: The email client
-    ///   - isNativeMac: Whether the package is being used on a native macOS app
-    /// - Returns: The bundle ID of the specified client
-    public static func getBundleId(of client: EmailClient, isNativeMac: Bool) -> String {
+    // MARK: Private methods
+
+    private static func getBundleId(of client: EmailClient, isNativeMac: Bool) -> String {
         switch client {
         case .gmail:
             return "com.google.Gmail" // iOS version only
         case .outlook:
             if isNativeMac {
-                return "com.microsoft.Outlook"
+                return "com.microsoft.Outlook" // macOS version
             } else {
-                return "com.microsoft.Office.Outlook"
+                return "com.microsoft.Office.Outlook" // iOS version
             }
         case .yahooMail:
             return "com.yahoo.Aerogram" // iOS version only
