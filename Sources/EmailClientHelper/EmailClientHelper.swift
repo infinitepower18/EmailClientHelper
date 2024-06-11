@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// Helper class to send an email using 3rd party apps
-public class EmailClientHelper {
+@MainActor public class EmailClientHelper {
 
     /// An array of available email clients on the device
     public static var availableClients: [EmailClient] {
