@@ -36,3 +36,9 @@ To send an email using the Gmail app:
 ``` swift
 EmailClientHelper.sendEmail(client: .gmail, to: "example@example.com")
 ```
+
+## Example
+
+You can an example of this package being used in the [SubManager](https://apps.apple.com/app/submanager-subscription-list/id1632853914) iOS app:
+
+<img width="256" alt="image" src="https://github.com/user-attachments/assets/457aee1a-2e1e-48b7-8bff-a66b288e2dd6">
