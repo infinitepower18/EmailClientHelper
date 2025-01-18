@@ -39,6 +39,6 @@ EmailClientHelper.sendEmail(client: .gmail, to: "example@example.com")
 
 ## Example
 
-You can an example of this package being used in the [SubManager](https://apps.apple.com/app/submanager-subscription-list/id1632853914) iOS app:
+You can see an example of this package being used in the [SubManager](https://apps.apple.com/app/submanager-subscription-list/id1632853914) iOS app:
 
 <img width="256" alt="image" src="https://github.com/user-attachments/assets/a393db67-001c-4b14-84a0-988340132f78">
